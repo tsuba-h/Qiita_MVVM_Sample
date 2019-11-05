@@ -7,17 +7,43 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Article View Controller-->
         <scene sceneID="y7u-Ce-fCr">
             <objects>
-                <viewController id="8Jb-xu-Wpv" sceneMemberID="viewController">
+                <viewController id="8Jb-xu-Wpv" customClass="ArticleViewController" customModule="Qiita_MVVM_Sample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hSr-x5-krB">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pDn-dt-bap">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="pDn-dt-bap" firstAttribute="leading" secondItem="faR-Rg-Kae" secondAttribute="leading" id="Ib3-2V-lDK"/>
+                            <constraint firstItem="pDn-dt-bap" firstAttribute="top" secondItem="faR-Rg-Kae" secondAttribute="top" id="cWK-sz-ege"/>
+                            <constraint firstItem="faR-Rg-Kae" firstAttribute="bottom" secondItem="pDn-dt-bap" secondAttribute="bottom" id="pfv-9S-gdq"/>
+                            <constraint firstItem="faR-Rg-Kae" firstAttribute="trailing" secondItem="pDn-dt-bap" secondAttribute="trailing" id="wo3-iT-0mk"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="faR-Rg-Kae"/>
                     </view>
-                    <navigationItem key="navigationItem" id="clR-lz-vm9"/>
+                    <navigationItem key="navigationItem" id="clR-lz-vm9">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="star" catalog="system" id="h2p-eG-0BG">
+                            <connections>
+                                <action selector="starButtonTappe:" destination="8Jb-xu-Wpv" id="HwK-tP-T5q"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="articleWebView" destination="pDn-dt-bap" id="TRj-qL-DkG"/>
+                        <outlet property="starButton" destination="h2p-eG-0BG" id="2dA-JM-2y6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LRm-Te-10n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -42,4 +68,7 @@
             <point key="canvasLocation" x="124.6376811594203" y="118.52678571428571"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="star" catalog="system" width="64" height="58"/>
+    </resources>
 </document>

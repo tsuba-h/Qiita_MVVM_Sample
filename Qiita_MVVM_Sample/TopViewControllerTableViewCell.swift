@@ -7,9 +7,14 @@
 //
 
 import UIKit
+import Instantiate
+import InstantiateStandard
 
-class TopViewControllerTableViewCell: UITableViewCell {
+class TopViewControllerTableViewCell: UITableViewCell, Reusable {
 
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -21,4 +26,7 @@ class TopViewControllerTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    @IBAction func likeButtonTapped(_ sender: Any) {
+        print("tap")
+    }
 }

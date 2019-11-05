@@ -8,7 +8,7 @@
 
 import Moya
 
-typealias qiitaAPIResponse = (( _ response: QiitaResponse?, _ error: Swift.Error?) -> Void)
+typealias qiitaAPIResponse = (( _ response: Qiita?, _ error: Swift.Error?) -> Void)
 
 final class QiitaRepository {
     private static let qiitaApiProvider = MoyaProvider<QiitaAPI>()
@@ -19,18 +19,17 @@ extension QiitaRepository {
     static func getQiita(completion: @escaping qiitaAPIResponse) {
         qiitaApiProvider.request(.getArticle) { (result) in
             switch result {
-            case .success(let response):
+            case let .success(moyaResponse):
                 do {
-                    let qiitaResponse = try JSONDecoder().decode(QiitaResponse.self, from: response.data)
-                    print(qiitaResponse)
-                    completion(qiitaResponse,nil)
-                } catch(let error) {
-                    print("Error: decoding error (getQiitadata) - \(error)")
-                    completion(nil,error)
+//                    let data = try JSONDecoder().decode([Qiita].self, from: moyaResponse.data)
+//                    self.qiita = data
+                    let data = try moyaResponse.map([Qiita].self)
+                } catch {
+                    print("error")
                 }
-            case .failure(let error):
-                print("Error: API Call error (getQiitadata) - \(error)")
-                completion(nil,error)
+            case let .failure(error):
+                print(error.localizedDescription)
+                break
             }
         }
     }

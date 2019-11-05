@@ -8,11 +8,15 @@
 
 import UIKit
 import Moya
+import RxSwift
+import Instantiate
+import InstantiateStandard
 
-class TopViewController: UIViewController {
+
+class TopViewController: UIViewController, StoryboardInstantiatable {
     
     @IBOutlet weak var tableView: UITableView!
-    var qiitaResponce = [QiitaResponse]()
+    var qiita = [Qiita]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,17 +25,22 @@ class TopViewController: UIViewController {
             switch result {
             case let .success(moyaResponse):
                 do {
-                    let data = try JSONDecoder().decode(QiitaResponse.self, from: moyaResponse.data)
-                    print(data)
+//                    let data = try JSONDecoder().decode([Qiita].self, from: moyaResponse.data)
+//                    self.qiita = data
+                    let data = try moyaResponse.map([Qiita].self)
+                    self.qiita = data
+                    print(self.qiita)
+                    self.tableView.reloadData()
                 } catch {
                     print("error")
                 }
             case let .failure(error):
-                print(error)
+                print(error.localizedDescription)
                 break
             }
         }
         
+        TableViewUtil.registerCell(tableView, identifier: TopViewControllerTableViewCell.reusableIdentifier)
         tableView.dataSource = self
         tableView.delegate = self
     }
@@ -39,17 +48,28 @@ class TopViewController: UIViewController {
 
 extension TopViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return qiitaResponce.count
+        return qiita.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//        cell.textLabel?.text = qiitaResponce[indexPath.row].title
-//        cell.detailTextLabel?.text = qiitaResponce[indexPath.row].name
+        let cell = TableViewUtil.createCell(tableView, identifier: TopViewControllerTableViewCell.reusableIdentifier, indexPath) as! TopViewControllerTableViewCell
+        cell.titleLabel.text = qiita[indexPath.row].title
+        cell.likeButton.setImage(UIImage(systemName: "star"), for: .normal)
         return cell
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc: ArticleViewController = ArticleViewController.instantiate()
+        vc.naviTitle = qiita[indexPath.row].title
+        vc.qiitaUrl = qiita[indexPath.row].url
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
 }

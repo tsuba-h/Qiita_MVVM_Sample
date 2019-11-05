@@ -34,7 +34,7 @@ extension QiitaAPI: TargetType {
     }
     
     var task: Task {
-        return .requestParameters(parameters: ["per_page" : "1"], encoding: URLEncoding.default)
+        return .requestParameters(parameters: ["per_page" : "10"], encoding: URLEncoding.default)
     }
     
     var headers: [String : String]? {

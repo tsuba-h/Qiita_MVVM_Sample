@@ -10,6 +10,7 @@ target 'Qiita_MVVM_Sample' do
   pod 'RxSwift', '~> 5'
   pod 'RxCocoa', '~> 5'
   pod 'Instantiate'
+  pod 'InstantiateStandard'
 
   target 'Qiita_MVVM_SampleTests' do
     inherit! :search_paths

@@ -8,8 +8,7 @@
 
 import Foundation
 
-struct QiitaResponse: Codable {
+struct Qiita: Codable {
     let title: String
-    let name: String
-    let url: URL
+    let url: String
 }
