@@ -14,10 +14,13 @@ class TopViewControllerTableViewCell: UITableViewCell, Reusable {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var likeButton: UIButton!
+    var like: Bool = true
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+       
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -28,5 +31,12 @@ class TopViewControllerTableViewCell: UITableViewCell, Reusable {
     
     @IBAction func likeButtonTapped(_ sender: Any) {
         print("tap")
+        if like {
+            likeButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            like = false
+        } else {
+            likeButton.setImage(UIImage(systemName: "star"), for: .normal)
+            like = true
+        }
     }
 }

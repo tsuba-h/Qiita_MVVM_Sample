@@ -23,6 +23,10 @@
 		2F42E9D0236BDAFF0036B7B5 /* ApiResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F42E9CF236BDAFF0036B7B5 /* ApiResponse.swift */; };
 		2F42E9D2236BDB820036B7B5 /* QiitaRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F42E9D1236BDB820036B7B5 /* QiitaRepository.swift */; };
 		2F491F93236C46760090DCB9 /* TableViewUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F491F92236C46760090DCB9 /* TableViewUtil.swift */; };
+		2F53186023713FCF00C85F84 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F53185F23713FCF00C85F84 /* TabBarController.swift */; };
+		2F53186223713FF300C85F84 /* TabBarController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F53186123713FF300C85F84 /* TabBarController.storyboard */; };
+		2F531864237142CD00C85F84 /* BookMarkViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F531863237142CD00C85F84 /* BookMarkViewController.storyboard */; };
+		2F531866237142DF00C85F84 /* BookMarkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F531865237142DF00C85F84 /* BookMarkViewController.swift */; };
 		36E91BC793EF5F81ED464157 /* Pods_Qiita_MVVM_Sample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0BC6C672FBB4709269569E0 /* Pods_Qiita_MVVM_Sample.framework */; };
 		B018A4500E880C3E52F61C80 /* Pods_Qiita_MVVM_SampleTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3735D33BA6F220496DEA248 /* Pods_Qiita_MVVM_SampleTests.framework */; };
 		C4F217B6A9DCA6D4CAC7698B /* Pods_Qiita_MVVM_SampleUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2F018EAEF5FA08D44994BD /* Pods_Qiita_MVVM_SampleUITests.framework */; };
@@ -69,6 +73,10 @@
 		2F42E9CF236BDAFF0036B7B5 /* ApiResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiResponse.swift; sourceTree = "<group>"; };
 		2F42E9D1236BDB820036B7B5 /* QiitaRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QiitaRepository.swift; sourceTree = "<group>"; };
 		2F491F92236C46760090DCB9 /* TableViewUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewUtil.swift; sourceTree = "<group>"; };
+		2F53185F23713FCF00C85F84 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		2F53186123713FF300C85F84 /* TabBarController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBarController.storyboard; sourceTree = "<group>"; };
+		2F531863237142CD00C85F84 /* BookMarkViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BookMarkViewController.storyboard; sourceTree = "<group>"; };
+		2F531865237142DF00C85F84 /* BookMarkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookMarkViewController.swift; sourceTree = "<group>"; };
 		352BC6D8A58D9B9519770857 /* Pods-Qiita_MVVM_Sample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qiita_MVVM_Sample.release.xcconfig"; path = "Target Support Files/Pods-Qiita_MVVM_Sample/Pods-Qiita_MVVM_Sample.release.xcconfig"; sourceTree = "<group>"; };
 		44CC96B792C4B471147A40E0 /* Pods-Qiita_MVVM_SampleTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qiita_MVVM_SampleTests.debug.xcconfig"; path = "Target Support Files/Pods-Qiita_MVVM_SampleTests/Pods-Qiita_MVVM_SampleTests.debug.xcconfig"; sourceTree = "<group>"; };
 		512EF5B2181B2B6E49BB4AF8 /* Pods-Qiita_MVVM_SampleTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qiita_MVVM_SampleTests.release.xcconfig"; path = "Target Support Files/Pods-Qiita_MVVM_SampleTests/Pods-Qiita_MVVM_SampleTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -138,6 +146,8 @@
 				2F16DF26236ABC3E009D792D /* TopViewController.swift */,
 				2F16DF29236ABE66009D792D /* TopViewControllerTableViewCell.xib */,
 				2F16DF28236ABE66009D792D /* TopViewControllerTableViewCell.swift */,
+				2F531863237142CD00C85F84 /* BookMarkViewController.storyboard */,
+				2F531865237142DF00C85F84 /* BookMarkViewController.swift */,
 				2F16DF2C236ABF33009D792D /* ArticleViewController.storyboard */,
 				2F42E9CD236BD7BE0036B7B5 /* ArticleViewController.swift */,
 				2F42E9D3236BE1910036B7B5 /* API */,
@@ -146,6 +156,8 @@
 				2F16DEFD236AB8C5009D792D /* Assets.xcassets */,
 				2F16DEFF236AB8C5009D792D /* LaunchScreen.storyboard */,
 				2F16DF02236AB8C5009D792D /* Info.plist */,
+				2F53185F23713FCF00C85F84 /* TabBarController.swift */,
+				2F53186123713FF300C85F84 /* TabBarController.storyboard */,
 			);
 			path = Qiita_MVVM_Sample;
 			sourceTree = "<group>";
@@ -308,10 +320,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2F53186223713FF300C85F84 /* TabBarController.storyboard in Resources */,
 				2F16DF2B236ABE66009D792D /* TopViewControllerTableViewCell.xib in Resources */,
 				2F16DF01236AB8C5009D792D /* LaunchScreen.storyboard in Resources */,
 				2F16DF2D236ABF33009D792D /* ArticleViewController.storyboard in Resources */,
 				2F16DEFE236AB8C5009D792D /* Assets.xcassets in Resources */,
+				2F531864237142CD00C85F84 /* BookMarkViewController.storyboard in Resources */,
 				2F16DF25236ABC16009D792D /* TopViewController.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,7 +440,9 @@
 				2F491F93236C46760090DCB9 /* TableViewUtil.swift in Sources */,
 				2F16DF2A236ABE66009D792D /* TopViewControllerTableViewCell.swift in Sources */,
 				2F42E9CE236BD7BE0036B7B5 /* ArticleViewController.swift in Sources */,
+				2F53186023713FCF00C85F84 /* TabBarController.swift in Sources */,
 				2F16DF27236ABC3E009D792D /* TopViewController.swift in Sources */,
+				2F531866237142DF00C85F84 /* BookMarkViewController.swift in Sources */,
 				2F42E9D0236BDAFF0036B7B5 /* ApiResponse.swift in Sources */,
 				2F16DF2F236AC25B009D792D /* QiitaApi.swift in Sources */,
 				2F42E9D2236BDB820036B7B5 /* QiitaRepository.swift in Sources */,

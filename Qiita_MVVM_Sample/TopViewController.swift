@@ -55,6 +55,7 @@ extension TopViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = TableViewUtil.createCell(tableView, identifier: TopViewControllerTableViewCell.reusableIdentifier, indexPath) as! TopViewControllerTableViewCell
         cell.titleLabel.text = qiita[indexPath.row].title
         cell.likeButton.setImage(UIImage(systemName: "star"), for: .normal)
+        //cell.likeButton.isHidden = true
         return cell
     }
     
