@@ -142,22 +142,17 @@
 			children = (
 				2F16DEF4236AB8C3009D792D /* AppDelegate.swift */,
 				2F16DEF6236AB8C3009D792D /* SceneDelegate.swift */,
-				2F16DF24236ABC16009D792D /* TopViewController.storyboard */,
-				2F16DF26236ABC3E009D792D /* TopViewController.swift */,
-				2F16DF29236ABE66009D792D /* TopViewControllerTableViewCell.xib */,
-				2F16DF28236ABE66009D792D /* TopViewControllerTableViewCell.swift */,
-				2F531863237142CD00C85F84 /* BookMarkViewController.storyboard */,
-				2F531865237142DF00C85F84 /* BookMarkViewController.swift */,
-				2F16DF2C236ABF33009D792D /* ArticleViewController.storyboard */,
-				2F42E9CD236BD7BE0036B7B5 /* ArticleViewController.swift */,
-				2F42E9D3236BE1910036B7B5 /* API */,
+				2F53185F23713FCF00C85F84 /* TabBarController.swift */,
+				2F53186123713FF300C85F84 /* TabBarController.storyboard */,
 				2F42E9CF236BDAFF0036B7B5 /* ApiResponse.swift */,
+				2F42E9D3236BE1910036B7B5 /* API */,
+				3B279C112372DDFC006BEBA8 /* Model */,
+				3B279C122372DE02006BEBA8 /* ViewModel */,
+				3B279C132372DE06006BEBA8 /* View */,
 				2F491F92236C46760090DCB9 /* TableViewUtil.swift */,
 				2F16DEFD236AB8C5009D792D /* Assets.xcassets */,
 				2F16DEFF236AB8C5009D792D /* LaunchScreen.storyboard */,
 				2F16DF02236AB8C5009D792D /* Info.plist */,
-				2F53185F23713FCF00C85F84 /* TabBarController.swift */,
-				2F53186123713FF300C85F84 /* TabBarController.storyboard */,
 			);
 			path = Qiita_MVVM_Sample;
 			sourceTree = "<group>";
@@ -200,6 +195,35 @@
 				B77FFD5482B0B1ABE16DC272 /* Pods-Qiita_MVVM_SampleUITests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		3B279C112372DDFC006BEBA8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3B279C122372DE02006BEBA8 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		3B279C132372DE06006BEBA8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2F16DF24236ABC16009D792D /* TopViewController.storyboard */,
+				2F16DF26236ABC3E009D792D /* TopViewController.swift */,
+				2F16DF29236ABE66009D792D /* TopViewControllerTableViewCell.xib */,
+				2F16DF28236ABE66009D792D /* TopViewControllerTableViewCell.swift */,
+				2F531863237142CD00C85F84 /* BookMarkViewController.storyboard */,
+				2F531865237142DF00C85F84 /* BookMarkViewController.swift */,
+				2F16DF2C236ABF33009D792D /* ArticleViewController.storyboard */,
+				2F42E9CD236BD7BE0036B7B5 /* ArticleViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		CFE354B331B52B0C3CDDC707 /* Frameworks */ = {

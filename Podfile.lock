@@ -24,16 +24,15 @@ DEPENDENCIES:
   - RxSwift (~> 5)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Alamofire
     - Instantiate
+    - InstantiateStandard
     - Moya
     - Result
     - RxCocoa
     - RxRelay
     - RxSwift
-  trunk:
-    - InstantiateStandard
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
