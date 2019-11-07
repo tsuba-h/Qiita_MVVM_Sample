@@ -26,6 +26,19 @@ extension QiitaRepository {
         }.disposed(by: disposeBag)
     }
     
+    static func fetchQiita(){
+        qiitaApiProvider.rx.request(.getArticle)
+            .map{(response) -> [Qiita]? in
+                return try? JSONDecoder().decode([Qiita].self, from: response.data)
+        }.subscribe(onSuccess: { response in
+            if let response = response {
+                print(response)
+            }
+        }, onError: {error in
+            print(error)
+        })
+    }
+    
 }
 
 

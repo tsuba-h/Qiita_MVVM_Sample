@@ -7,3 +7,17 @@
 //
 
 import Foundation
+import RxSwift
+
+class TopViewModel {
+    
+    var article: Observable<[Qiita]>?
+    
+    var articleService = ArticleService()
+    
+    func getArticle() {
+        articleService.getArticle { (response, error) in
+            
+        }
+    }
+}

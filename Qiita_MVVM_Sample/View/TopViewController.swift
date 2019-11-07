@@ -18,6 +18,8 @@ class TopViewController: UIViewController, StoryboardInstantiatable {
     @IBOutlet weak var tableView: UITableView!
     var qiita = [Qiita]()
     
+    var viewModel = TopViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let provider = MoyaProvider<QiitaAPI>()
