@@ -9,15 +9,43 @@
 import Foundation
 import RxSwift
 
-class TopViewModel {
+protocol TopViewModelInputs {
     
-    var article: Observable<[Qiita]>?
+}
+
+protocol TopViewModelOutputs {
+    var articles: Observable<[Qiita]> {get}
+    var error: Observable<Error> {get}
+}
+
+protocol TopViewModelType{
+    var inputs: TopViewModelInputs {get}
+    var outputs: TopViewModelOutputs {get}
+}
+
+class TopViewModel: TopViewModelOutputs {
     
-    var articleService = ArticleService()
+    let articles: Observable<[Qiita]>
+    let error: Observable<Error>
+    
+    
+//    var article: Observable<[Qiita]>
+//    var articleService = ArticleService()
+    
+    
+    private let disposeBag = DisposeBag()
+    
+    init() {
+        let _articles = PublishSubject<[Qiita]>()
+        self.articles = _articles.asObservable()
+    
+        let _error = PublishSubject<Error>()
+        self.error = _error.asObservable()
+    }
     
     func getArticle() {
-        articleService.getArticle { (response, error) in
-            
-        }
+//        articleService.getArticle { (response, error) in
+//
+//        }
     }
 }
