@@ -27,19 +27,19 @@ class ArticleService {
         }
     }
     
-    func fetchArticle(comltition: @escaping (_ response: [Qiita?], _ error: Swift.Error?) -> Void) {
-        QiitaRepository.getQiita { event in
-            switch event {
-            case .success(let response):
-                do {
-                    let qiitaResponse = try JSONDecoder().decode([Qiita].self, from: response.data)
-                    comltition(qiitaResponse, nil)
-                } catch(let error) {
-                    print(error)
-                }
-            case .error(let error):
-                print(error)
-            }
-        }
-    }
+//    func fetchArticle() -> Observable<[Qiita]> {
+//        QiitaRepository.getQiita { event in
+//            switch event {
+//            case .success(let response):
+//                do {
+//                    let _response = try JSONDecoder().decode([Qiita], from: response.data)
+//                    return _response
+//                } catch(let error) {
+//
+//                }
+//            case .error(let error):
+//                print(error)
+//            }
+//        }
+//    }
 }

@@ -45,6 +45,8 @@ class TopViewController: UIViewController, StoryboardInstantiatable {
         TableViewUtil.registerCell(tableView, identifier: TopViewControllerTableViewCell.reusableIdentifier)
         tableView.dataSource = self
         tableView.delegate = self
+        
+        QiitaRepository.fetchQiita()
     }
 }
 

@@ -8,12 +8,14 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 protocol TopViewModelInputs {
     
 }
 
 protocol TopViewModelOutputs {
+    // 内部ではSubjectだが書き込まれないようにObservableにしている
     var articles: Observable<[Qiita]> {get}
     var error: Observable<Error> {get}
 }
@@ -25,7 +27,7 @@ protocol TopViewModelType{
 
 class TopViewModel: TopViewModelOutputs {
     
-    let articles: Observable<[Qiita]>
+    var articles: Observable<[Qiita]>
     let error: Observable<Error>
     
     
@@ -36,16 +38,31 @@ class TopViewModel: TopViewModelOutputs {
     private let disposeBag = DisposeBag()
     
     init() {
-        let _articles = PublishSubject<[Qiita]>()
+        // BehaviorReplayにすると初期値を出力する。
+        // 外部インターフェースはObservableなので初期値を持っているかどうか判断できないのでないほうがいい。
+        let _articles = PublishRelay<[Qiita]>()
+        let _error = PublishRelay<Error>()
+        
+        
+        QiitaRepository._fetchQiita()
+        .subscribe(onNext: { response in
+            _articles.accept(response)
+        }, onError: { error in
+            _error.accept(error)
+        }).disposed(by: disposeBag)
+
         self.articles = _articles.asObservable()
-    
-        let _error = PublishSubject<Error>()
         self.error = _error.asObservable()
     }
     
-    func getArticle() {
-//        articleService.getArticle { (response, error) in
-//
-//        }
-    }
+//    func getArticle() {
+//        QiitaRepository._fetchQiita()
+//            .subscribe(onNext: { response in
+//                articles.
+//            }, onError: { (<#Error#>) in
+//                <#code#>
+//            }).disposed(by: disposeBag)
+//    }
+    
 }
+
