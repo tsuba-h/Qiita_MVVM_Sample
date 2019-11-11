@@ -66,3 +66,12 @@ class TopViewModel: TopViewModelOutputs {
     
 }
 
+extension TopViewModel: TopViewModelInputs {
+    
+}
+
+extension TopViewModel: TopViewModelType {
+    var inputs: TopViewModelInputs {return self}
+    var outputs: TopViewModelOutputs {return self}
+}
+

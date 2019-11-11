@@ -9,6 +9,7 @@
 import UIKit
 import Moya
 import RxSwift
+import RxCocoa
 import Instantiate
 import InstantiateStandard
 
@@ -18,50 +19,26 @@ class TopViewController: UIViewController, StoryboardInstantiatable {
     @IBOutlet weak var tableView: UITableView!
     var qiita = [Qiita]()
     
-    var viewModel = TopViewModel()
+    let viewModel:TopViewModelType = TopViewModel()
+    let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let provider = MoyaProvider<QiitaAPI>()
-        provider.request(.getArticle) { (result) in
-            switch result {
-            case let .success(moyaResponse):
-                do {
-//                    let data = try JSONDecoder().decode([Qiita].self, from: moyaResponse.data)
-//                    self.qiita = data
-                    let data = try moyaResponse.map([Qiita].self)
-                    self.qiita = data
-                    print(self.qiita)
-                    self.tableView.reloadData()
-                } catch {
-                    print("error")
-                }
-            case let .failure(error):
-                print(error.localizedDescription)
-                break
-            }
-        }
         
         TableViewUtil.registerCell(tableView, identifier: TopViewControllerTableViewCell.reusableIdentifier)
-        tableView.dataSource = self
-        tableView.delegate = self
         
-        QiitaRepository.fetchQiita()
+        viewModel.outputs.articles
+            .bind(to: tableView.rx.items(cellIdentifier: TopViewControllerTableViewCell.reusableIdentifier, cellType: TopViewControllerTableViewCell.self)) { index, result, cell in
+                cell.titleLabel.text = result.title
+                cell.likeButton.setImage(UIImage(systemName: "star"), for: .normal)
+        }
+        .disposed(by: disposeBag)
+  
+        tableView.delegate = self
     }
 }
 
-extension TopViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return qiita.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = TableViewUtil.createCell(tableView, identifier: TopViewControllerTableViewCell.reusableIdentifier, indexPath) as! TopViewControllerTableViewCell
-        cell.titleLabel.text = qiita[indexPath.row].title
-        cell.likeButton.setImage(UIImage(systemName: "star"), for: .normal)
-        //cell.likeButton.isHidden = true
-        return cell
-    }
+extension TopViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
