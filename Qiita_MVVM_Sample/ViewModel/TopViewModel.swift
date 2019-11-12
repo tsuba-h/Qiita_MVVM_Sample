@@ -27,13 +27,8 @@ protocol TopViewModelType{
 
 class TopViewModel: TopViewModelOutputs {
     
-    var articles: Observable<[QiitaData]>
+    let articles: Observable<[QiitaData]>
     let error: Observable<Error>
-    
-    
-//    var article: Observable<[Qiita]>
-//    var articleService = ArticleService()
-    
     
     private let disposeBag = DisposeBag()
     
@@ -43,8 +38,7 @@ class TopViewModel: TopViewModelOutputs {
         let _articles = PublishRelay<[QiitaData]>()
         let _error = PublishRelay<Error>()
         
-        
-        QiitaRepository._fetchQiita()
+        QiitaRepository.fetchQiita()
         .subscribe(onNext: { response in
             let dataSource = QiitaData.init(items: response)
             _articles.accept([dataSource])
@@ -55,15 +49,6 @@ class TopViewModel: TopViewModelOutputs {
         self.articles = _articles.asObservable()
         self.error = _error.asObservable()
     }
-    
-//    func getArticle() {
-//        QiitaRepository._fetchQiita()
-//            .subscribe(onNext: { response in
-//                articles.
-//            }, onError: { (<#Error#>) in
-//                <#code#>
-//            }).disposed(by: disposeBag)
-//    }
     
 }
 
