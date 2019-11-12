@@ -10,6 +10,7 @@ import UIKit
 import Moya
 import RxSwift
 import RxCocoa
+import RxDataSources
 import Instantiate
 import InstantiateStandard
 
@@ -20,6 +21,14 @@ class TopViewController: UIViewController, StoryboardInstantiatable {
     var qiita = [Qiita]()
     
     let viewModel:TopViewModelType = TopViewModel()
+    
+    let dataSource = RxTableViewSectionedReloadDataSource<QiitaDataSource>(configureCell: {dataSource, tableView, indexPath, item in
+        let cell = TableViewUtil.createCell(tableView, identifier: TopViewControllerTableViewCell.reusableIdentifier, indexPath) as! TopViewControllerTableViewCell
+        cell.titleLabel.text = item.title
+        cell.likeButton.setImage(UIImage(systemName: "star"), for: .normal)
+        return cell
+    })
+    
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -28,13 +37,10 @@ class TopViewController: UIViewController, StoryboardInstantiatable {
         TableViewUtil.registerCell(tableView, identifier: TopViewControllerTableViewCell.reusableIdentifier)
         
         viewModel.outputs.articles
-            .bind(to: tableView.rx.items(cellIdentifier: TopViewControllerTableViewCell.reusableIdentifier, cellType: TopViewControllerTableViewCell.self)) { index, result, cell in
-                cell.titleLabel.text = result.title
-                cell.likeButton.setImage(UIImage(systemName: "star"), for: .normal)
-        }
-        .disposed(by: disposeBag)
-  
-        tableView.delegate = self
+            .bind(to: tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+        
+        tableView.rx.setDelegate(self).disposed(by: disposeBag)
     }
 }
 
