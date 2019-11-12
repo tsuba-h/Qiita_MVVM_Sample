@@ -16,7 +16,7 @@ protocol TopViewModelInputs {
 
 protocol TopViewModelOutputs {
     // 内部ではSubjectだが書き込まれないようにObservableにしている
-    var articles: Observable<[QiitaDataSource]> {get}
+    var articles: Observable<[QiitaData]> {get}
     var error: Observable<Error> {get}
 }
 
@@ -27,7 +27,7 @@ protocol TopViewModelType{
 
 class TopViewModel: TopViewModelOutputs {
     
-    var articles: Observable<[QiitaDataSource]>
+    var articles: Observable<[QiitaData]>
     let error: Observable<Error>
     
     
@@ -40,13 +40,13 @@ class TopViewModel: TopViewModelOutputs {
     init() {
         // BehaviorReplayにすると初期値を出力する。
         // 外部インターフェースはObservableなので初期値を持っているかどうか判断できないのでないほうがいい。
-        let _articles = PublishRelay<[QiitaDataSource]>()
+        let _articles = PublishRelay<[QiitaData]>()
         let _error = PublishRelay<Error>()
         
         
         QiitaRepository._fetchQiita()
         .subscribe(onNext: { response in
-            let dataSource = QiitaDataSource.init(items: response)
+            let dataSource = QiitaData.init(items: response)
             _articles.accept([dataSource])
         }, onError: { error in
             _error.accept(error)

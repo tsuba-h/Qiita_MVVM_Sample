@@ -9,14 +9,14 @@
 import Foundation
 import RxDataSources
 
-struct QiitaDataSource {
+struct QiitaData {
     var items: [Qiita]
 }
 
-extension QiitaDataSource: SectionModelType {
+extension QiitaData: SectionModelType {
     typealias Item = Qiita
     
-    init(original: QiitaDataSource, items: [Qiita]) {
+    init(original: QiitaData, items: [Qiita]) {
         self = original
         self.items = items
     }

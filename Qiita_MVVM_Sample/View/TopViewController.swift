@@ -17,12 +17,9 @@ import InstantiateStandard
 
 class TopViewController: UIViewController, StoryboardInstantiatable {
     
-    @IBOutlet weak var tableView: UITableView!
-    var qiita = [Qiita]()
-    
     let viewModel:TopViewModelType = TopViewModel()
     
-    let dataSource = RxTableViewSectionedReloadDataSource<QiitaDataSource>(configureCell: {dataSource, tableView, indexPath, item in
+    let dataSource = RxTableViewSectionedReloadDataSource<QiitaData>(configureCell: {dataSource, tableView, indexPath, item in
         let cell = TableViewUtil.createCell(tableView, identifier: TopViewControllerTableViewCell.reusableIdentifier, indexPath) as! TopViewControllerTableViewCell
         cell.titleLabel.text = item.title
         cell.likeButton.setImage(UIImage(systemName: "star"), for: .normal)
@@ -30,6 +27,8 @@ class TopViewController: UIViewController, StoryboardInstantiatable {
     })
     
     let disposeBag = DisposeBag()
+    
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,8 +55,8 @@ extension TopViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc: ArticleViewController = ArticleViewController.instantiate()
-        vc.naviTitle = qiita[indexPath.row].title
-        vc.qiitaUrl = qiita[indexPath.row].url
+//        vc.naviTitle = qiita[indexPath.row].title
+//        vc.qiitaUrl = qiita[indexPath.row].url
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
