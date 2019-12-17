@@ -48,6 +48,7 @@ class TopViewModel: TopViewModelOutputs {
 
         self.articles = _articles.asObservable()
         self.error = _error.asObservable()
+        ////
     }
     
 }
